@@ -1,12 +1,15 @@
 # trello-like-board
+The project is a combination of two parts:
 
-https://phppot.com/php/trello-like-drag-and-drop-cards-for-project-management-software/
+-  https://phppot.com/php/trello-like-drag-and-drop-cards-for-project-management-software/
+The link contains all the backend and frontend files to create a single board with MySQL database and jQuery 
+ 
+You can have a look at the Demo https://phppot.com/demo/trello-like-drag-and-drop-cards-for-project-management-software/
 
-The link contains all thebackend and frontend files
-
-
-https://sortablejs.github.io/Sortable/
+- the power of Drag and Drop from https://sortablejs.github.io/Sortable/
 
 https://github.com/SortableJS/Sortable
 
-download or link to the sortable.js file neede to make all the magic
+Download sortable.js file to make all the magic!
+
+
