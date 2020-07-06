@@ -3,6 +3,7 @@
 <title>Trello Like Drag and Drop Cards for Project Management Software</title>
 <META NAME="Description" CONTENT="Trello Like Drag and Drop Cards for Project Management Software">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="Sortable.js"></script>
 
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -51,11 +52,6 @@
 		box-shadow: 0 2px 4px 2px rgba(19, 35, 47, 0.3);
 	}
 
-	.status-card-new {
-		border:1px solid rgba(19, 35, 47, 0.1);
-		box-shadow: 0 2px 4px 2px rgba(19, 35, 47, 0.1);
-	}
-	
 
 
 	.card-header {
@@ -132,23 +128,18 @@
 	/*form*/
 	.add_form
 		{
+			width: 240;
 			background: rgba(19, 35, 47, 0.9); 
 			padding: 4px;
 
 			margin: 0;
+			margin-left:auto;
+			margin-right:auto;
 			border-radius: 4px;
 			box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 			
 		}
-	.add_form_new
-		{
-			background: rgba(19, 35, 47, 0.3); 
-			box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
-		}
-	.add_form_new:hover{
-		background: rgba(19, 35, 47, 0.9); 
-	}
-	
+
 	
 	input, textarea {
 					  color: #1ab188;
@@ -225,9 +216,6 @@
 <body>
 
 <script type="text/javascript">
-
-
-
 let	opt = {
 	group: 'shared', 
 	animation:150,
@@ -237,7 +225,7 @@ onEnd: (evt) => {
 	var url = 'edit-status.php';
 	var status_id = evt.to.getAttribute('data-status-id');
     var task_id = evt.item.getAttribute('data-task-id');
-    //console.log(status_id,  task_id)
+    console.log(status_id,  task_id)
 	$.ajax({
                  url: url+'?status_id='+status_id+'&task_id='+task_id,
                  success: function(response){
@@ -247,9 +235,18 @@ onEnd: (evt) => {
 }
 </script>
 
+<?
+include "ProjectManagement.php";
+$projectName='test';
+$projectManagement = new ProjectManagement();
+$statusResult = $projectManagement->getAllStatus($projectName);
+
+?>
+
 <div class="task-board">
             <?php
             foreach ($statusResult as $statusRow) {
+
                 $taskResult = $projectManagement->getProjectTaskByStatus($statusRow["id"], $projectName);
                 
 				?>
@@ -262,7 +259,7 @@ onEnd: (evt) => {
 					<? echo '<div class="list" id="c_'.$statusRow["id"].'" data-status-id="'.$statusRow["id"].'" >'; 
 					?>
 						<script type="text/javascript">
-							new Sortable(document.getElementById(<? echo '"c_'.$statusRow["id"].'"'; ?> ), opt);
+							new Sortable.create(document.getElementById(<? echo '"c_'.$statusRow["id"].'"'; ?> ), opt);
 						</script>
 						
 					<?	
@@ -279,14 +276,51 @@ onEnd: (evt) => {
 					// end cards
 					?>
 					</div>
+				
+				
+				<div class="add_form">
+				
+				<form  action="<? echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data" >
+				<input type="hidden" name="action" value="submit">	
+				
+				<? 
+					//echo '<input type="hidden" name="form" value="'.$taskRow["status_id"].'">'; 
+					echo '<input type="hidden" name="form" value="'.$statusRow["id"].'">'; 
+					
+				?>
+				<div class="table_view">
+					<div class="table_row">
+						<div class="table_cell_70 input-row">
+												
+							<?
+								Echo '<input name="title" type="text" required size=200 value="" autocomplete="off" />';
+
+							?>
+
+						</div>
+						<div class="table_cell_action"> 
+						<?		
+						echo '<input class="button button-block" type="submit" name="save" value="Add item"/>' ;
+						?>
+						</div>
+					
+					</div>
+				</div>
+				</form>
+	</div>
+				
+				
+				
 				</div>
                 <?php
 			// all boards	
             }
-            ?>			
+            ?>	
+
+		
+	
 </div>
 
-<script src="Sortable.js"></script>
 
 
 

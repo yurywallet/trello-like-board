@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+<style>
+	.list > div {
+	min-height: 50px;
+	border-style: solid;
+	border-width: 2px;
+	text-align: center;
+	line-height: 50px;
+	font-size: 20px;
+	font-family: Helvetica;
+}
+
+
+.half {
+	display: inline-block;
+	width: 49%;
+	padding: 0;
+	margin: 0;
+	vertical-align: top;
+}
+</style>
+
+
+</head>
+<body>
+<div id="Demo" class="list-group col nsortable">
+<div class="list half list-group-item nested-1" id="list1" style="background: pink;">
+	<div  data-sortable-id="1.1" id="1.1">Item 1.1</div>
+	<div  data-sortable-id="1.2" id="1.2">Item 1.2</div>
+	<div  data-sortable-id="1.5" id="1.5">Item 1.5</div>
+</div>
+
+<div class="list half list-group-item nested-2" id="list2">
+	<div   data-sortable-id="2.1" id="1.5" dataid="2.1">Item 2.1</div>
+	<div   data-sortable-id="2.2" dataid="2.2">Item 2.2</div>
+
+</div>
+
+</div>
+<p id="log"></p>
+
+
+
+
+<script src="Sortable.js"></script>
+
+<script type="text/javascript">
+
+let	opt = {
+	group: 'shared', 
+	animation:150,
+/*onStart: (evt) => {console.log(evt.oldIndex)},*/
+onEnd: (evt) => {console.log(evt.item.id, evt.item.getAttribute('dataid'),  evt.to.id)}
+}
+
+//var sortable = Sortable.create(el, options);
+
+	
+	new Sortable.create(document.getElementById('list1'), opt);
+	new Sortable.create(document.getElementById('list2'), opt);
+	
+	
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
