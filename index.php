@@ -237,7 +237,7 @@ onEnd: (evt) => {
 
 <?
 include "ProjectManagement.php";
-$projectName='test';
+$projectName='StartTuts';
 $projectManagement = new ProjectManagement();
 $statusResult = $projectManagement->getAllStatus($projectName);
 
