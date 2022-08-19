@@ -1,4 +1,4 @@
-## Trello Like Board Project
+## Trello Like Boards Project
 
 The project is a combination of two parts:
 
