@@ -12,4 +12,4 @@ https://github.com/SortableJS/Sortable
 
 Download sortable.js file to make all the magic!
 
-For more details please read article at Medium: https://medium.com/@yurywallet/how-to-create-drag-and-drop-boards-with-jquery-and-sortable-js-49604b3242bc
+For more details please read article at [Medium](https://medium.com/@yurywallet/how-to-create-drag-and-drop-boards-with-jquery-and-sortable-js-49604b3242bc)
